@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scientific Calculator – Full Explained Model</title>
+
+<style>
+body{
+    background:#e6e6e6;
+    display:flex;
+    justify-content:center;
+    padding:25px;
+    font-family: "Segoe UI", Arial;
+}
+.wrap{
+    width:380px;
+    background:#222;
+    padding:20px;
+    border-radius:18px;
+    color:white;
+}
+.title{
+    text-align:center;
+    font-size:22px;
+    margin-bottom:12px;
+}
+.screen{
+    background:#111;
+    padding:15px;
+    border-radius:12px;
+    font-size:22px;
+    text-align:right;
+    color:#eee;
+}
+
+.pad{
+    margin-top:18px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+.btn{
+    background:#333;
+    color:white;
+    border:none;
+    padding:13px 6px;
+    border-radius:10px;
+    font-size:14px;
+    text-align:center;
+    text-decoration:none;
+    box-shadow:0 3px 8px rgba(0,0,0,0.4);
+}
+.op{ background:#ff9f1a; color:black; font-weight:bold; }
+.ac{ background:#d93b3b; }
+.equal{ background:#2fb45f; font-weight:bold; }
+
+.explain{
+    margin-top:20px;
+    background:#111;
+    padding:14px;
+    border-radius:12px;
+    min-height:150px;
+}
+
+.explain-box{ display:none; }
+.explain-box:target{ display:block; }
+
+.explain h3{ color:#ffd27a; margin:0; font-size:18px; }
+.explain p{ color:#ddd; font-size:14px; margin-top:8px; line-height:1.4; }
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+    <div class="title">SCIENTIFIC CALCULATOR</div>
+
+    <div class="screen">0</div>
+
+    <div class="pad">
+
+        <!-- TRIGONOMETRY -->
+        <a href="#sin" class="btn">sin</a>
+        <a href="#cos" class="btn">cos</a>
+        <a href="#tan" class="btn">tan</a>
+        <a href="#asin" class="btn">sin⁻¹</a>
+        <a href="#acos" class="btn">cos⁻¹</a>
+
+        <a href="#atan" class="btn">tan⁻¹</a>
+        <a href="#sec" class="btn">sec</a>
+        <a href="#csc" class="btn">csc</a>
+        <a href="#cot" class="btn">cot</a>
+        <a href="#pi" class="btn">π</a>
+
+        <!-- HYPERBOLIC -->
+        <a href="#sinh" class="btn">sinh</a>
+        <a href="#cosh" class="btn">cosh</a>
+        <a href="#tanh" class="btn">tanh</a>
+        <a href="#asinh" class="btn">sinh⁻¹</a>
+        <a href="#acosh" class="btn">cosh⁻¹</a>
+
+        <a href="#atanh" class="btn">tanh⁻¹</a>
+        <a href="#log" class="btn">log</a>
+        <a href="#ln" class="btn">ln</a>
+        <a href="#logx" class="btn">logₓ</a>
+        <a href="#sqrt" class="btn">√</a>
+
+        <!-- ALGEBRA -->
+        <a href="#x2" class="btn">x²</a>
+        <a href="#x3" class="btn">x³</a>
+        <a href="#xy" class="btn">xʸ</a>
+        <a href="#mod" class="btn">mod</a>
+        <a href="#e" class="btn">e</a>
+
+        <!-- CALCULUS -->
+        <a href="#diff" class="btn">d/dx</a>
+        <a href="#integ" class="btn">∫</a>
+        <a href="#percent" class="btn op">%</a>
+        <a href="#ac" class="btn ac">AC</a>
+        <a href="#fact" class="btn">!</a>
+
+        <!-- NUMBERS -->
+        <a href="#7" class="btn">7</a>
+        <a href="#8" class="btn">8</a>
+        <a href="#9" class="btn">9</a>
+        <a href="#div" class="btn op">÷</a>
+        <a href="#mul" class="btn op">×</a>
+
+        <a href="#4" class="btn">4</a>
+        <a href="#5" class="btn">5</a>
+        <a href="#6" class="btn">6</a>
+        <a href="#minus" class="btn op">−</a>
+        <a href="#plus" class="btn op">+</a>
+
+        <a href="#1" class="btn">1</a>
+        <a href="#2" class="btn">2</a>
+        <a href="#3" class="btn">3</a>
+        <a href="#equal" class="btn equal">=</a>
+        <a href="#dot" class="btn">.</a>
+
+        <a href="#0" class="btn" style="grid-column:span 2">0</a>
+
+    </div>
+<script>
+function showInfo(func) {
+  const info = document.getElementById("info");
+  const details = {
+
+        
+    sin: `
+      <strong>sin(x)</strong> — <span class="highlight">Sine Function</span><br>
+      The sine of an angle in a right triangle gives the ratio of the opposite side to the hypotenuse.<br><br>
+      <b>Formula:</b> sin(θ) = Opposite / Hypotenuse<br>
+      <b>Range:</b> −1 ≤ sin(x) ≤ 1<br>
+      <b>Example:</b> sin(30°) = sin(π/6) = 0.5
+    `,
+    cos: `
+      <strong>cos(x)</strong> — <span class="highlight">Cosine Function</span><br>
+      Represents the ratio of the adjacent side to the hypotenuse in a right triangle.<br><br>
+      <b>Formula:</b> cos(θ) = Adjacent / Hypotenuse<br>
+      <b>Range:</b> −1 ≤ cos(x) ≤ 1<br>
+      <b>Example:</b> cos(60°) = cos(π/3) = 0.5
+    `,
+    tan: `
+      <strong>tan(x)</strong> — <span class="highlight">Tangent Function</span><br>
+      Tangent represents the ratio of the sine of an angle to its cosine.<br><br>
+      <b>Formula:</b> tan(θ) = sin(θ) / cos(θ)<br>
+      <b>Range:</b> (−∞, ∞)<br>
+      <b>Example:</b> tan(45°) = tan(π/4) = 1
+    `,
+    sec: `
+      <strong>sec(x)</strong> — <span class="highlight">Secant Function</span><br>
+      Reciprocal of cosine function.<br><br>
+      <b>Formula:</b> sec(θ) = 1 / cos(θ)<br>
+      <b>Example:</b> sec(60°) = 1 / 0.5 = 2
+    `,
+    csc: `
+      <strong>csc(x)</strong> — <span class="highlight">Cosecant Function</span><br>
+      Reciprocal of sine function.<br><br>
+      <b>Formula:</b> csc(θ) = 1 / sin(θ)<br>
+      <b>Example:</b> csc(30°) = 1 / 0.5 = 2
+    `,
+    cot: `
+      <strong>cot(x)</strong> — <span class="highlight">Cotangent Function</span><br>
+      Reciprocal of tangent function.<br><br>
+      <b>Formula:</b> cot(θ) = 1 / tan(θ) = cos(θ) / sin(θ)<br>
+      <b>Example:</b> cot(45°) = 1
+    `,
+    log: `
+      <strong>log(x)</strong> — <span class="highlight">Common Logarithm</span><br>
+      Gives the power to which 10 must be raised to get the number x.<br><br>
+      <b>Formula:</b> log₁₀(x) = y ⇔ 10ʸ = x<br>
+      <b>Example:</b> log(1000) = 3
+    `,
+    ln: `
+      <strong>ln(x)</strong> — <span class="highlight">Natural Logarithm</span><br>
+      Logarithm with base e (Euler’s number ≈ 2.71828).<br><br>
+      <b>Formula:</b> ln(x) = y ⇔ eʸ = x<br>
+      <b>Example:</b> ln(e²) = 2
+    `,
+    sqrt: `
+      <strong>√x</strong> — <span class="highlight">Square Root</span><br>
+      The number which, when multiplied by itself, gives x.<br><br>
+      <b>Example:</b> √64 = 8
+    `,
+    square: `
+      <strong>x²</strong> — <span class="highlight">Square</span><br>
+      Multiplies a number by itself.<br><br>
+      <b>Example:</b> 6² = 36
+    `,
+    cube: `
+      <strong>x³</strong> — <span class="highlight">Cube</span><br>
+      A number multiplied by itself three times.<br><br>
+      <b>Example:</b> 4³ = 64
+    `,
+    power: `
+      <strong>xʸ</strong> — <span class="highlight">Exponent or Power</span><br>
+      Raises a base number x to the power y.<br><br>
+      <b>Example:</b> 2⁵ = 32
+    `,
+    pi: `
+      <strong>π</strong> — <span class="highlight">Pi Constant</span><br>
+      Ratio of the circumference to the diameter of a circle (≈ 3.14159).<br><br>
+      <b>Example:</b> Circumference = 2πr
+    `,
+    e: `
+      <strong>e</strong> — <span class="highlight">Euler’s Number</span><br>
+      A mathematical constant used in natural logarithms and exponential growth.<br><br>
+      <b>Value:</b> e ≈ 2.71828<br>
+      <b>Example:</b> e² ≈ 7.389
+    `,
+    fact: `
+      <strong>x!</strong> — <span class="highlight">Factorial</span><br>
+      Product of all positive integers less than or equal to x.<br><br>
+      <b>Example:</b> 5! = 5×4×3×2×1 = 120
+    `,
+    mod: `
+      <strong>mod</strong> — <span class="highlight">Modulus</span><br>
+      Returns the remainder of a division.<br><br>
+      <b>Example:</b> 10 mod 3 = 1
+    `
+  };
+
+  info.innerHTML = details[func] || "Click a function to see its detailed explanation and example.";
+}
+</script>
+
+</body>
+</html>

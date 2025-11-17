@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background-color: #ffffff;
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease; 
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card:hover {
+    background-color: #e0f7fa;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.card:hover img {
+    transform: scale(1.05); 
+}

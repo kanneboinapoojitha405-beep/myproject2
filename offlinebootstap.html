@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+<style>
+@keyframes float {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+.float-card {
+    animation: float 1.5s infinite alternate;
+}
+</style>
+
+<div class="container mt-5">
+    <div class="card shadow float-card" style="width: 20rem; margin: auto;">
+        <div class="card-body">
+            <button class="btn btn-primary btn-animate">Hover Me</button>
+            <p class="card-text">This card moves up and down smoothly.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Mywebpage</title>
+<style type="text/css">
+#D1
+{
+width:100px;
+height:100px;
+background-color: green;
+color:white;
+}
+#D2
+{
+width:100px;
+height:100px;
+background-color: red;
+color:white;
+}
+#D3
+{
+width:100px;
+height:100px;
+background-color: blue;
+color:white;
+}
+#D4
+{
+width:100px;
+height:100px;
+background-color: orange;
+color:black;
+}
+#D1:hover
+{
+transform:translate(200px,200px);
+}
+#D2:hover
+{
+transform:rotate(40deg);
+
+}
+#D3:hover
+{
+transform:scaleX(2);
+}
+#D4:hover
+{
+transform:skewY(40deg);
+}
+</style>
+</head>
+<body>
+<center>
+<div id="D1">
+<p>Aurora</p>
+</div>
+<div id="D2">
+<p>Aurora</p>
+</div>
+<div id="D3">
+<p>Aurora</p>
+</div>
+<div id="D4">
+<p>Aurora</p>
+</div>
+</center>
+</body>
+</html>
